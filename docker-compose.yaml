@@ -22,7 +22,7 @@ services:
       TLS_CERTIFICATE_FULLCHAIN_NAME: ${TLS_CERTIFICATE_FULLCHAIN_NAME:-"fullchain.pem"}
       TLS_CERTIFIATE_PRIVKEY_NAME: ${TLS_CERTIFIATE_PRIVKEY_NAME:-"privkey.key"}
       ADMIN_USERNAME: ${ADMIN_USERNAME:-username}
-      ADMIN_EMAIL: ${ADMIN_EMAIL:exemple@exemple.com} ## Password would be print in logs, please check `docker compose logs`
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-exemple@exemple.com} ## Password would be print in logs, please check `docker compose logs`
     volumes:
       - azuriom_data:/data
       - azuriom_vhost:/etc/nginx/sites-enabled
