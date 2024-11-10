@@ -17,7 +17,7 @@ services:
       DB_USERNAME: ${DB_USERNAME:-root}
       DB_PASSWORD: ${SERVICE_PASSWORD_MYSQL:-password}
       MAIL_FROM_ADDRESS: ${MAIL_FROM:-admin@exemple.com}
-      WEB_DOMAIN: your-domain.local
+      WEB_DOMAIN: ${WEB_DOMAIN:exemple.com}
       TLS_ENABLED: ${TLS_ENABLED:-False}
       TLS_CERTIFICATE_FULLCHAIN_NAME: ${TLS_CERTIFICATE_FULLCHAIN_NAME:-"fullchain.pem"}
       TLS_CERTIFIATE_PRIVKEY_NAME: ${TLS_CERTIFIATE_PRIVKEY_NAME:-"privkey.key"}
