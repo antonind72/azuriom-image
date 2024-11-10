@@ -9,20 +9,20 @@ volumes:
 services:
   azuriom:
     image: ghcr.io/idotek/azuriom-image:main
-    ports: 
+    ports:
       - 8080:80
     environment:
-      DB_HOST: database
-      DB_DATABASE: azuriom
-      DB_USERNAME: root
-      DB_PASSWORD: password
-      MAIL_FROM_ADDRESS: hello@example.com
-      WEB_DOMAIN: your-domain.local
-      TLS_ENABLED: "False"
-      TLS_CERTIFICATE_FULLCHAIN_NAME: "fullchain.pem"
-      TLS_CERTIFIATE_PRIVKEY_NAME: "privkey.key"
-      ADMIN_USERNAME: "username"
-      ADMIN_EMAIL: "your@email.fr" ## Password would be print in logs, please check `docker compose logs`
+      DB_HOST: ${DB_HOST:-database}
+      DB_DATABASE: ${DB_DATABASE:-azuriom}
+      DB_USERNAME: ${DB_USERNAME:-root}
+      DB_PASSWORD: ${SERVICE_PASSWORD_MYSQL:-password}
+      MAIL_FROM_ADDRESS: ${MAIL_FROM:-admin@exemple.com}
+      WEB_DOMAIN: ${WEB_DOMAIN:-exemple.com}
+      TLS_ENABLED: ${TLS_ENABLED:-False}
+      TLS_CERTIFICATE_FULLCHAIN_NAME: ${TLS_CERTIFICATE_FULLCHAIN_NAME:-"fullchain.pem"}
+      TLS_CERTIFIATE_PRIVKEY_NAME: ${TLS_CERTIFIATE_PRIVKEY_NAME:-"privkey.key"}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-username}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-exemple@exemple.com} ## Password would be print in logs, please check `docker compose logs`
     volumes:
       - azuriom_data:/data
       - azuriom_vhost:/etc/nginx/sites-enabled
@@ -33,8 +33,8 @@ services:
   database:
     image: mysql:latest
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: azuriom
+      MYSQL_ROOT_PASSWORD: ${SERVICE_PASSWORD_MYSQL:-password}
+      MYSQL_DATABASE: ${DB_DATABASE:-azuriom}
     volumes:
       - database:/var/lib/mysql
     networks:
