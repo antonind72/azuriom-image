@@ -9,8 +9,6 @@ volumes:
 services:
   azuriom:
     image: ghcr.io/idotek/azuriom-image:main
-    ports:
-      - 8080:80
     environment:
       DB_HOST: ${DB_HOST:-database}
       DB_DATABASE: ${DB_DATABASE:-azuriom}
